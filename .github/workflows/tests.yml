@@ -10,4 +10,4 @@ jobs:
         with:
           python-version: 3.9
       - name: Run tests
-        run: cd test && python -m unittest tests.py
+        run: python -m unittest tests.py
