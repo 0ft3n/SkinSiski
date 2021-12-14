@@ -8,3 +8,8 @@
 .
 .
 Залупа
+
+Ах да, хочешь доказательство, что я крутой? А? А? А?
+Смари
+![example workflow](https://github.com/<OWNER>/<REPOSITORY>/actions/workflows/<WORKFLOW_FILE>/badge.svg)
+Пососи. У У У У У Да я богатый уёбок
