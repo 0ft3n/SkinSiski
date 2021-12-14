@@ -17,9 +17,11 @@ jobs:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
           message: |
-            ${{ github.actor }} created commit:
-            Commit message: ${{ github.event.commits[0].message }}
+            ${{ github.actor }} внёс изменения в репозиторий:
+            Комментарий: ${{ github.event.commits[0].message }}
             
-            Repository: ${{ github.repository }}
+            Репозиторий: ${{ github.repository }}
             
-            See changes: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            СсылОчка: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            
+            Кстати, если вы это читаете - то Аня жопа а я сделяль телеграм интеграцию :3
