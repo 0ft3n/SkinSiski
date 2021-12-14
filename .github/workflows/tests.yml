@@ -1,7 +1,7 @@
-name: GitHub Actions Demo
+name: Testing project code
 on: [push]
 jobs:
-  Explore-GitHub-Actions:
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -9,5 +9,5 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-       - name: Run tests
+      - name: Run tests
         run: python -m unittest tests/tests.py
