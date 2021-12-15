@@ -36,9 +36,9 @@ jobs:
       - name: Setup veriables
         run: |
           if [ "${{ steps.test1.outcome }}" = "success" ]; then
-            test1="пройден"
+            echo '::set-output name=FIRST_TEST::пройден'
           else
-            test1="провален"
+            echo '::set-output name=FIRST_TEST::провален'
           fi
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
@@ -51,7 +51,7 @@ jobs:
             Комментарий: ${{ github.event.commits[0].message }}
             
             Результаты тестов:
-            1) Тест на корректное считывание: <b><u>${{ env.test1 }}</u></b>
+            1) Тест на корректное считывание: <b><u>${{ env.FIRST_TEST }}</u></b>
             2) Тест на корректное вычисление минимума: <b><u>${{ steps.test2.outcome }}</u></b>
             3) Тест на корректное вычисление максимума: <b><u>${{ steps.test3.outcome }}</u></b>
             4) Тест на корректное вычисление суммы: <b><u>${{ steps.test4.outcome }}</u></b>
