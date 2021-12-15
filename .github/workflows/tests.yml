@@ -2,8 +2,6 @@ name: Testing project code
 on: [push, workflow_dispatch]
 jobs:
   build:
-    env:
-      FIRST_TEST: Хуй
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -35,13 +33,13 @@ jobs:
         id: test6
         continue-on-error: true
         run: python -m unittest speedTests.py
-      - name: Setup veriables
-        run: |
-          if [ "${{ steps.test1.outcome }}" = "success" ]; then
-            echo '::set-output name=FIRST_TEST::пройден'
-          else
-            echo '::set-output name=FIRST_TEST::провален'
-          fi
+      - name: Setup variables
+        id: amogus
+        uses: frabert/replace-string-action@v2.0
+        with:
+          pattern: 'success'
+          string: '${{ steps.test1.outcome }}'
+          replace-with: 'пройден'
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
@@ -53,7 +51,7 @@ jobs:
             Комментарий: ${{ github.event.commits[0].message }}
             
             Результаты тестов:
-            1) Тест на корректное считывание: <b><u>${{ env.FIRST_TEST }}</u></b>
+            1) Тест на корректное считывание: <b><u>${{ steps.amogus.outputs.replaced }}</u></b>
             2) Тест на корректное вычисление минимума: <b><u>${{ steps.test2.outcome }}</u></b>
             3) Тест на корректное вычисление максимума: <b><u>${{ steps.test3.outcome }}</u></b>
             4) Тест на корректное вычисление суммы: <b><u>${{ steps.test4.outcome }}</u></b>
