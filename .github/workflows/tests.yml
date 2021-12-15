@@ -35,11 +35,31 @@ jobs:
         run: python -m unittest speedTests.py
       - name: Setup variables
         id: amogus
-        uses: frabert/replace-string-action@v2.0
-        with:
-          pattern: 'success'
-          string: '${{ steps.test1.outcome }}'
-          replace-with: 'пройден'
+        run: |
+          if [ "${{ steps.test1.outcome }}" = "success" ]; then
+            echo "::set-output name=test1::пройден"
+          else
+            echo "::set-output name=test1::провален"
+          if [ "${{ steps.test2.outcome }}" = "success" ]; then
+            echo "::set-output name=test2::пройден"
+          else
+            echo "::set-output name=test2::провален"
+          if [ "${{ steps.test3.outcome }}" = "success" ]; then
+            echo "::set-output name=test3::пройден"
+          else
+            echo "::set-output name=test3::провален"
+          if [ "${{ steps.test4.outcome }}" = "success" ]; then
+            echo "::set-output name=test4::пройден"
+          else
+            echo "::set-output name=test4::провален"
+          if [ "${{ steps.test5.outcome }}" = "success" ]; then
+            echo "::set-output name=test5::пройден"
+          else
+            echo "::set-output name=test5::провален"
+          if [ "${{ steps.test6.outcome }}" = "success" ]; then
+            echo "::set-output name=test6::пройден"
+          else
+            echo "::set-output name=test6::провален"
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
@@ -51,12 +71,12 @@ jobs:
             Комментарий: ${{ github.event.commits[0].message }}
             
             Результаты тестов:
-            1) Тест на корректное считывание: <b><u>${{ steps.amogus.outputs.replaced }}</u></b>
-            2) Тест на корректное вычисление минимума: <b><u>${{ steps.test2.outcome }}</u></b>
-            3) Тест на корректное вычисление максимума: <b><u>${{ steps.test3.outcome }}</u></b>
-            4) Тест на корректное вычисление суммы: <b><u>${{ steps.test4.outcome }}</u></b>
-            5) Тест на корректное вычисление произведения: <b><u>${{ steps.test5.outcome }}</u></b>
-            6) Тесты на скорость: <b><u>${{ steps.test6.outcome }}</u></b>
+            1) Тест на корректное считывание: <b><u>${{ steps.amogus.outputs.test1 }}</u></b>
+            2) Тест на корректное вычисление минимума: <b><u>${{ steps.amogus.outputs.test2 }}</u></b>
+            3) Тест на корректное вычисление максимума: <b><u>${{ steps.amogus.outputs.test3 }}</u></b>
+            4) Тест на корректное вычисление суммы: <b><u>${{ steps.amogus.outputs.test4 }}</u></b>
+            5) Тест на корректное вычисление произведения: <b><u>${{ steps.amogus.outputs.test5 }}</u></b>
+            6) Тесты на скорость: <b><u>${{ steps.amogus.outputs.test6 }}</u></b>
             
             Репозиторий: ${{ github.repository }}
             
