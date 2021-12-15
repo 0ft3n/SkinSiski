@@ -2,6 +2,8 @@ name: Testing project code
 on: [push, workflow_dispatch]
 jobs:
   build:
+    env:
+      FIRST_TEST: Хуй
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
