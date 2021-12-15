@@ -7,7 +7,7 @@ class MyTestCase(unittest.TestCase):
 
     def test_valid(self):
         skin_siski.readNums("validTest.txt")
-        self.assertEqual(len(skin_siski.numbers), 6)
+        self.assertEqual(len(skin_siski.numbers), 4)
 
     def test_min(self):
         skin_siski.readNums("simpleTest.txt")

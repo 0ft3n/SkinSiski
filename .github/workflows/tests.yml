@@ -1,5 +1,5 @@
 name: Testing project code
-on: [push]
+on: [push, workflow_dispatch]
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -10,4 +10,18 @@ jobs:
         with:
           python-version: 3.9
       - name: Run tests
-        run: cd test && python -m unittest tests.py
+        run: python -m unittest tests.py
+      - name: send telegram message on push
+        uses: appleboy/telegram-action@master
+        with:
+          to: ${{ secrets.TELEGRAM_TO }}
+          token: ${{ secrets.TELEGRAM_TOKEN }}
+          message: |
+            ${{ github.actor }} внёс изменения в репозиторий:
+            Комментарий: ${{ github.event.commits[0].message }}
+            
+            Репозиторий: ${{ github.repository }}
+            
+            СсылОчка: https://github.com/${{ github.repository }}/commit/${{github.sha}}
+            
+            Кстати, если вы это читаете - то Аня жопа а я сделяль телеграм интеграцию :3
