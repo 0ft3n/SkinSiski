@@ -5,26 +5,6 @@ import time
 
 class MyTestCase(unittest.TestCase):
 
-    def test_valid(self):
-        skin_siski.readNums("validTest.txt")
-        self.assertEqual(len(skin_siski.numbers), 6)
-
-    def test_min(self):
-        skin_siski.readNums("simpleTest.txt")
-        self.assertEqual(skin_siski.getMin(), -5)
-
-    def test_max(self):
-        skin_siski.readNums("simpleTest.txt")
-        self.assertEqual(skin_siski.getMax(), 324)
-
-    def test_sum(self):
-        skin_siski.readNums("simpleTest.txt")
-        self.assertEqual(skin_siski.getSum(), 449)
-
-    def test_multiply(self):
-        skin_siski.readNums("simpleTest.txt")
-        self.assertEqual(skin_siski.getMult(), -20397256704000)
-
     def test_1(self):
         print("Проверка времени выполнения с файлом 1KB")
         start_time = time.time()
