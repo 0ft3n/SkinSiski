@@ -38,18 +38,18 @@ jobs:
         with:
           to: ${{ secrets.TELEGRAM_TO }}
           token: ${{ secrets.TELEGRAM_TOKEN }}
-          format: markdown
+          format: html
           message: |
             ${{ github.actor }} внёс изменения в репозиторий:
             Комментарий: ${{ github.event.commits[0].message }}
             
             Результаты тестов:
-            1) Тест на корректное считывание: *__${{ steps.test1.outcome }}__*
-            1) Тест на корректное вычисление минимума: *__${{ steps.test2.outcome }}__*
-            1) Тест на корректное вычисление максимума: *__${{ steps.test3.outcome }}__*
-            1) Тест на корректное вычисление суммы: *__${{ steps.test4.outcome }}*
-            1) Тест на корректное вычисление произведения: *__${{ steps.test5.outcome }}__*
-            1) Тесты на скорость: *__${{ steps.test6.outcome }}__*
+            1) Тест на корректное считывание: <b><u>${{ steps.test1.outcome }}</u></b>
+            1) Тест на корректное вычисление минимума: <b><u>${{ steps.test2.outcome }}</u></b>
+            1) Тест на корректное вычисление максимума: <b><u>${{ steps.test3.outcome }}</u></b>
+            1) Тест на корректное вычисление суммы: <b><u>${{ steps.test4.outcome }}</u></b>
+            1) Тест на корректное вычисление произведения: <b><u>${{ steps.test5.outcome }}</u></b>
+            1) Тесты на скорость: <b><u>${{ steps.test6.outcome }}</u></b>
             
             Репозиторий: ${{ github.repository }}
             
