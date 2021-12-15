@@ -9,8 +9,30 @@ jobs:
         uses: actions/setup-python@v2
         with:
           python-version: 3.9
-      - name: Run tests
-        run: python -m unittest tests.py
+      - name: Run valid test
+        id: test1
+        continue-on-error: true
+        run: python -m unittest testValid.py
+      - name: Run min test
+        id: test2
+        continue-on-error: true
+        run: python -m unittest testMin.py
+      - name: Run max test
+        id: test3
+        continue-on-error: true
+        run: python -m unittest testMax.py
+      - name: Run sum test
+        id: test4
+        continue-on-error: true
+        run: python -m unittest testSum.py
+      - name: Run multiply test
+        id: test5
+        continue-on-error: true
+        run: python -m unittest testMultiply.py
+      - name: Run speed tests
+        id: test6
+        continue-on-error: true
+        run: python -m unittest speedTests.py
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
@@ -19,6 +41,14 @@ jobs:
           message: |
             ${{ github.actor }} внёс изменения в репозиторий:
             Комментарий: ${{ github.event.commits[0].message }}
+            
+            Результаты тестов:
+            1) Тест на корректное считывание: $ {{ steps.test1.conclusion }}
+            1) Тест на корректное вычисление минимума: $ {{ steps.test2.conclusion }}
+            1) Тест на корректное вычисление максимума: $ {{ steps.test3.conclusion }}
+            1) Тест на корректное вычисление суммы: $ {{ steps.test4.conclusion }}
+            1) Тест на корректное вычисление произведения: $ {{ steps.test5.conclusion }}
+            1) Тесты на скорость: $ {{ steps.test6.conclusion }}
             
             Репозиторий: ${{ github.repository }}
             
