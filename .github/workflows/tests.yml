@@ -40,26 +40,32 @@ jobs:
             echo "::set-output name=test1::пройден"
           else
             echo "::set-output name=test1::провален"
+          fi
           if [ "${{ steps.test2.outcome }}" = "success" ]; then
             echo "::set-output name=test2::пройден"
           else
             echo "::set-output name=test2::провален"
+          fi
           if [ "${{ steps.test3.outcome }}" = "success" ]; then
             echo "::set-output name=test3::пройден"
           else
             echo "::set-output name=test3::провален"
+          fi
           if [ "${{ steps.test4.outcome }}" = "success" ]; then
             echo "::set-output name=test4::пройден"
           else
             echo "::set-output name=test4::провален"
+          fi
           if [ "${{ steps.test5.outcome }}" = "success" ]; then
             echo "::set-output name=test5::пройден"
           else
             echo "::set-output name=test5::провален"
+          fi
           if [ "${{ steps.test6.outcome }}" = "success" ]; then
             echo "::set-output name=test6::пройден"
           else
             echo "::set-output name=test6::провален"
+          fi
       - name: send telegram message on push
         uses: appleboy/telegram-action@master
         with:
